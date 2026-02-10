@@ -1,7 +1,7 @@
 # id|type|health|drops
 cow|passive|10|beef,leather
 pig|passive|10|pork
-sheep|passive|8|wool,mutton
+sheep|passive|8|wool
 chicken|passive|4|chicken,feather
 villager|neutral|20|none
 zombie|hostile|20|rotten_flesh

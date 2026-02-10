@@ -13,9 +13,16 @@ AsserCraft is a Java voxel sandbox prototype targeting Minecraft Java 1.0-inspir
 - Dimension flow (Overworld/Nether/End) with Ender Dragon spawn
 - Simple text UI abstractions (main menu, HUD, inventory)
 
-## Run
+## Run (Maven)
 
 ```bash
 mvn test
 mvn -q exec:java -Dexec.mainClass=com.assercraft.engine.Game
+```
+
+## Run (no Maven dependency resolution)
+
+```bash
+javac --release 17 -d out $(find src/main/java -name '*.java')
+java -cp out:src/main/resources com.assercraft.engine.Game
 ```

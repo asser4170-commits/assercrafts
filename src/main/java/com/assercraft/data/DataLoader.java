@@ -17,6 +17,7 @@ public final class DataLoader {
     public void loadBlocks(Registry<BlockDefinition> blocks, String resourcePath) {
         readLines(resourcePath).forEach(line -> {
             String[] p = line.split("\\|");
+            requireParts(resourcePath, line, p, 6);
             blocks.register(p[0], new BlockDefinition(
                     p[0],
                     Float.parseFloat(p[1]),
@@ -31,6 +32,7 @@ public final class DataLoader {
     public void loadItems(Registry<ItemDefinition> items, String resourcePath) {
         readLines(resourcePath).forEach(line -> {
             String[] p = line.split("\\|");
+            requireParts(resourcePath, line, p, 4);
             items.register(p[0], new ItemDefinition(p[0], p[1], Integer.parseInt(p[2]), Integer.parseInt(p[3])));
         });
     }
@@ -38,6 +40,7 @@ public final class DataLoader {
     public void loadEntities(Registry<EntityDefinition> entities, String resourcePath) {
         readLines(resourcePath).forEach(line -> {
             String[] p = line.split("\\|");
+            requireParts(resourcePath, line, p, 4);
             List<String> drops = Arrays.stream(p[3].split(",")).filter(s -> !s.isBlank()).toList();
             entities.register(p[0], new EntityDefinition(p[0], p[1], Integer.parseInt(p[2]), drops));
         });
@@ -56,6 +59,14 @@ public final class DataLoader {
                     .toList();
         } catch (IOException e) {
             throw new RuntimeException("Unable to read " + resourcePath, e);
+        }
+    }
+
+    private static void requireParts(String resourcePath, String line, String[] parts, int required) {
+        if (parts.length < required) {
+            throw new IllegalArgumentException(
+                    "Malformed data in " + resourcePath + " (expected " + required + " fields): " + line
+            );
         }
     }
 }
