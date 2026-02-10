@@ -1,0 +1,14 @@
+# id|type|health|drops
+cow|passive|10|beef,leather
+pig|passive|10|pork
+sheep|passive|8|wool,mutton
+chicken|passive|4|chicken,feather
+villager|neutral|20|none
+zombie|hostile|20|rotten_flesh
+skeleton|hostile|20|bone,arrow
+spider|hostile|16|string,spider_eye
+creeper|hostile|20|gunpowder
+slime|hostile|16|slime_ball
+ghast|hostile|10|ghast_tear,gunpowder
+enderman|hostile|40|ender_pearl
+ender_dragon|boss|200|dragon_egg

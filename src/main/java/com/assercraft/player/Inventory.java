@@ -1,0 +1,41 @@
+package com.assercraft.player;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public final class Inventory {
+    public static final int SLOT_COUNT = 36;
+    public static final int HOTBAR_COUNT = 9;
+    private final List<ItemStack> slots = new ArrayList<>(SLOT_COUNT);
+
+    public Inventory() {
+        for (int i = 0; i < SLOT_COUNT; i++) {
+            slots.add(ItemStack.EMPTY);
+        }
+    }
+
+    public boolean addItem(String itemId, int amount) {
+        for (int i = 0; i < slots.size(); i++) {
+            ItemStack stack = slots.get(i);
+            if (stack != ItemStack.EMPTY && stack.itemId().equals(itemId)) {
+                stack.add(amount);
+                return true;
+            }
+        }
+        for (int i = 0; i < slots.size(); i++) {
+            if (slots.get(i) == ItemStack.EMPTY || slots.get(i).isEmpty()) {
+                slots.set(i, new ItemStack(itemId, amount));
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public List<ItemStack> hotbar() {
+        return slots.subList(0, HOTBAR_COUNT);
+    }
+
+    public List<ItemStack> slots() {
+        return List.copyOf(slots);
+    }
+}
