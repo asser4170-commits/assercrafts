@@ -1,5 +1,9 @@
 package com.assercraft.crafting;
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+import com.assercraft.player.Inventory;
+
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
 import com.assercraft.player.Inventory;
 
@@ -8,6 +12,7 @@ import com.assercraft.player.Inventory;
 import com.assercraft.player.Inventory;
 
 =======
+ >>>>>>> main
  >>>>>>> main
  >>>>>>> main
 import java.util.ArrayList;
@@ -27,9 +32,12 @@ public final class CraftingSystem {
                 .filter(r -> r.pattern().equals(grid))
                 .findFirst();
     }
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
 =======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-6yr25b
+ >>>>>>> main
  >>>>>>> main
 
     public boolean craft(Inventory inventory, List<String> grid, int width, int height) {
@@ -39,30 +47,42 @@ public final class CraftingSystem {
         }
         Recipe recipe = match.get();
         for (String input : recipe.pattern()) {
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+            if ("air".equals(input)) {
+                continue;
+            }
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
             if ("air".equals(input)) {
                 continue;
             }
 =======
  >>>>>>> main
+ >>>>>>> main
             if (!inventory.hasItem(input, 1)) {
                 return false;
             }
         }
         for (String input : recipe.pattern()) {
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
+ >>>>>>> main
             if (!"air".equals(input)) {
                 inventory.removeItem(input, 1);
             }
         }
         return inventory.addItem(recipe.result(), recipe.resultCount());
     }
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
 =======
             inventory.removeItem(input, 1);
         }
         return inventory.addItem(recipe.result(), recipe.resultCount());
     }
 =======
+ >>>>>>> main
  >>>>>>> main
  >>>>>>> main
 }

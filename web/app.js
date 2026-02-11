@@ -9,6 +9,10 @@ const H = 26;
 const world = [];
 let tick = 0;
 let dimension = 'overworld';
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+let gameOver = false;
+=======
+ >>>>>>> main
 
 const blocks = {
   air: { c: 'rgba(0,0,0,0)' },
@@ -24,6 +28,11 @@ const blocks = {
   torch: { c: '#f5c64b' }
 };
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+const mobs = [];
+
+=======
+ >>>>>>> main
 const player = {
   x: Math.floor(W / 2),
   y: Math.floor(H / 2),
@@ -60,6 +69,10 @@ function generateWorld(dim) {
     }
   }
   world[player.y][player.x] = 'air';
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+  mobs.length = 0;
+=======
+ >>>>>>> main
 }
 
 generateWorld(dimension);
@@ -75,6 +88,13 @@ window.addEventListener('keydown', (e) => {
 });
 window.addEventListener('keyup', (e) => keys.delete(e.key.toLowerCase()));
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+function getMobAt(x, y) {
+  return mobs.find(m => m.x === x && m.y === y);
+}
+
+=======
+ >>>>>>> main
 canvas.addEventListener('contextmenu', (e) => e.preventDefault());
 canvas.addEventListener('mousedown', (e) => {
   const rect = canvas.getBoundingClientRect();
@@ -83,6 +103,20 @@ canvas.addEventListener('mousedown', (e) => {
   if (tx < 0 || ty < 0 || tx >= W || ty >= H) return;
   if (Math.abs(tx - player.x) + Math.abs(ty - player.y) > 1) return;
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+  const mob = getMobAt(tx, ty);
+  if (mob && e.button === 0) {
+    mob.hp -= 6;
+    if (mob.hp <= 0) {
+      mobs.splice(mobs.indexOf(mob), 1);
+      const dirtSlot = player.hotbar.find(s => s.id === 'dirt');
+      if (dirtSlot) dirtSlot.count += 1;
+    }
+    return;
+  }
+
+=======
+ >>>>>>> main
   if (e.button === 0) {
     const b = world[ty][tx];
     if (b !== 'air' && b !== 'obsidian') {
@@ -93,6 +127,10 @@ canvas.addEventListener('mousedown', (e) => {
   }
   if (e.button === 2) {
     if (world[ty][tx] !== 'air') return;
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+    if (getMobAt(tx, ty)) return;
+=======
+ >>>>>>> main
     const slot = player.hotbar[player.hotbarIndex];
     if (!slot || slot.count <= 0) return;
     world[ty][tx] = slot.id;
@@ -100,7 +138,47 @@ canvas.addEventListener('mousedown', (e) => {
   }
 });
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+function spawnMob() {
+  if (mobs.length > 12) return;
+  const day = ((Math.floor(tick / 120) % 2) === 0);
+  const allow = !day || dimension !== 'overworld';
+  if (!allow || Math.random() > 0.18) return;
+
+  const px = player.x + (Math.random() < 0.5 ? -1 : 1) * (4 + Math.floor(Math.random() * 8));
+  const py = player.y + (Math.random() < 0.5 ? -1 : 1) * (3 + Math.floor(Math.random() * 6));
+  if (px < 1 || py < 1 || px >= W - 1 || py >= H - 1) return;
+  if (world[py][px] !== 'air') return;
+  if (getMobAt(px, py)) return;
+
+  const type = dimension === 'end' ? 'enderman' : (dimension === 'nether' ? 'ghast' : 'zombie');
+  mobs.push({ x: px, y: py, hp: type === 'enderman' ? 14 : 10, type });
+}
+
+function updateMobs() {
+  for (const m of mobs) {
+    const dx = Math.sign(player.x - m.x);
+    const dy = Math.sign(player.y - m.y);
+    const nx = m.x + (Math.random() < 0.6 ? dx : 0);
+    const ny = m.y + (Math.random() < 0.6 ? dy : 0);
+
+    if (Math.abs(player.x - m.x) + Math.abs(player.y - m.y) <= 1) {
+      if (tick % 20 === 0) player.hp = Math.max(0, player.hp - (m.type === 'enderman' ? 3 : 2));
+      continue;
+    }
+
+    if (nx >= 1 && ny >= 1 && nx < W - 1 && ny < H - 1 && world[ny][nx] === 'air' && !getMobAt(nx, ny)) {
+      m.x = nx;
+      m.y = ny;
+    }
+  }
+}
+
 function step() {
+  if (gameOver) return;
+=======
+function step() {
+ >>>>>>> main
   tick++;
   let nx = player.x;
   let ny = player.y;
@@ -108,6 +186,27 @@ function step() {
   if (keys.has('s')) ny++;
   if (keys.has('a')) nx--;
   if (keys.has('d')) nx++;
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+  if (nx >= 1 && ny >= 1 && nx < W - 1 && ny < H - 1 && world[ny][nx] === 'air' && !getMobAt(nx, ny)) {
+    player.x = nx; player.y = ny;
+  }
+
+  if (tick % 30 === 0 && dimension === 'overworld') {
+    for (let y = H - 2; y >= 1; y--) {
+      for (let x = 1; x < W - 1; x++) {
+        if (world[y][x] === 'water') {
+          if (world[y + 1][x] === 'air') world[y + 1][x] = 'water';
+          else if (world[y][x + 1] === 'air') world[y][x + 1] = 'water';
+          else if (world[y][x - 1] === 'air') world[y][x - 1] = 'water';
+        }
+      }
+    }
+  }
+
+  if (tick % 15 === 0) spawnMob();
+  if (tick % 8 === 0) updateMobs();
+  if (player.hp <= 0) gameOver = true;
+=======
   if (nx >= 1 && ny >= 1 && nx < W - 1 && ny < H - 1 && world[ny][nx] === 'air') {
     player.x = nx; player.y = ny;
   }
@@ -126,6 +225,7 @@ function step() {
       }
     }
   }
+ >>>>>>> main
 }
 
 function draw() {
@@ -142,10 +242,30 @@ function draw() {
     }
   }
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+  for (const m of mobs) {
+    ctx.fillStyle = m.type === 'enderman' ? '#6a4c93' : (m.type === 'ghast' ? '#f1f1f1' : '#d94f4f');
+    ctx.fillRect(m.x * TILE + 3, m.y * TILE + 3, TILE - 6, TILE - 6);
+  }
+
+  ctx.fillStyle = '#ffd166';
+  ctx.fillRect(player.x * TILE + 4, player.y * TILE + 4, TILE - 8, TILE - 8);
+
+  if (gameOver) {
+    ctx.fillStyle = 'rgba(0,0,0,.65)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#ff6b6b';
+    ctx.font = 'bold 42px Arial';
+    ctx.fillText('You Died', canvas.width / 2 - 95, canvas.height / 2);
+  }
+
+  stats.textContent = `Dim: ${dimension} | HP: ${player.hp} | Tick: ${tick} | Mobs: ${mobs.length} | Cycle: ${day ? 'day' : 'night'}`;
+=======
   ctx.fillStyle = '#ffd166';
   ctx.fillRect(player.x * TILE + 4, player.y * TILE + 4, TILE - 8, TILE - 8);
 
   stats.textContent = `Dim: ${dimension} | HP: ${player.hp} | Tick: ${tick} | Cycle: ${day ? 'day' : 'night'}`;
+ >>>>>>> main
   hotbarEl.innerHTML = '';
   player.hotbar.forEach((slot, i) => {
     const div = document.createElement('div');

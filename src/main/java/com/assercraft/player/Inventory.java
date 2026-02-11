@@ -31,11 +31,14 @@ public final class Inventory {
         return false;
     }
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
 =======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-6yr25b
 =======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
+ >>>>>>> main
  >>>>>>> main
  >>>>>>> main
     public boolean hasItem(String itemId, int amount) {
@@ -48,6 +51,9 @@ public final class Inventory {
 
     public boolean removeItem(String itemId, int amount) {
         int remaining = amount;
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+        for (int i = 0; i < slots.size() && remaining > 0; i++) {
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
         for (int i = 0; i < slots.size() && remaining > 0; i++) {
 =======
@@ -55,6 +61,7 @@ public final class Inventory {
         for (int i = 0; i < slots.size() && remaining > 0; i++) {
 =======
       for (int i = 0; i < slots.size() && remaining > 0; i++) {
+ >>>>>>> main
  >>>>>>> main
  >>>>>>> main
             ItemStack stack = slots.get(i);
@@ -71,9 +78,12 @@ public final class Inventory {
         return remaining == 0;
     }
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
 =======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-6yr25b
+ >>>>>>> main
  >>>>>>> main
 
     public int countItem(String itemId) {
@@ -84,10 +94,13 @@ public final class Inventory {
                 .sum();
     }
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
 =======
 =======
 =======
+ >>>>>>> main
  >>>>>>> main
  >>>>>>> main
  >>>>>>> main

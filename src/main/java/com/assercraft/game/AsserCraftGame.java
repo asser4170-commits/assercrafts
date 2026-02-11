@@ -11,6 +11,9 @@ import com.assercraft.dimension.DimensionManager;
 import com.assercraft.engine.TickLoop;
 import com.assercraft.entity.EntityDefinition;
 import com.assercraft.entity.EntityInstance;
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+import com.assercraft.entity.ItemEntity;
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
 import com.assercraft.entity.ItemEntity;
 =======
@@ -23,6 +26,7 @@ import com.assercraft.entity.ItemEntity;
   >>>>>>> main
  >>>>>>> main
  >>>>>>> main
+ >>>>>>> main
 import com.assercraft.entity.SpawnSystem;
 import com.assercraft.item.ItemDefinition;
 import com.assercraft.player.Player;
@@ -30,6 +34,11 @@ import com.assercraft.registry.Registry;
 import com.assercraft.ui.Hud;
 import com.assercraft.ui.InventoryScreen;
 import com.assercraft.ui.MainMenu;
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+import com.assercraft.world.BlockInteractionSystem;
+import com.assercraft.world.FluidSimulator;
+import com.assercraft.world.LightEngine;
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
 import com.assercraft.world.BlockInteractionSystem;
 import com.assercraft.world.FluidSimulator;
@@ -47,6 +56,7 @@ import com.assercraft.world.FluidSimulator;
 import com.assercraft.world.LightEngine;
 =======
   >>>>>>> main
+ >>>>>>> main
  >>>>>>> main
  >>>>>>> main
 import com.assercraft.world.World;
@@ -70,6 +80,11 @@ public final class AsserCraftGame {
     private final EnchantingSystem enchanting = new EnchantingSystem();
     private final SpawnSystem spawner = new SpawnSystem();
     private final DimensionManager dimensions = new DimensionManager();
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+    private final PhysicsSystem physics = new PhysicsSystem();
+    private final CombatSystem combat = new CombatSystem();
+    private final Difficulty difficulty = Difficulty.NORMAL;
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
     private final PhysicsSystem physics = new PhysicsSystem();
     private final CombatSystem combat = new CombatSystem();
@@ -80,6 +95,7 @@ public final class AsserCraftGame {
     private final CombatSystem combat = new CombatSystem();
     private final Difficulty difficulty = Difficulty.NORMAL;
 =======
+ >>>>>>> main
  >>>>>>> main
  >>>>>>> main
 
@@ -87,6 +103,8 @@ public final class AsserCraftGame {
     private final Hud hud = new Hud();
     private final InventoryScreen inventoryScreen = new InventoryScreen();
     private final List<EntityInstance> entities = new ArrayList<>();
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
 =======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-6yr25b
@@ -94,16 +112,20 @@ public final class AsserCraftGame {
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
  >>>>>>> main
  >>>>>>> main
+ >>>>>>> main
     private final List<ItemEntity> itemEntities = new ArrayList<>();
     private final LightEngine lightEngine = new LightEngine();
     private final FluidSimulator fluidSimulator = new FluidSimulator();
     private BlockInteractionSystem blockInteraction;
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
 =======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-6yr25b
 =======
 =======
+ >>>>>>> main
  >>>>>>> main
  >>>>>>> main
  >>>>>>> main
@@ -115,6 +137,9 @@ public final class AsserCraftGame {
         loader.loadBlocks(blockRegistry, "/data/assercraft/blocks/blocks.db");
         loader.loadItems(itemRegistry, "/data/assercraft/items/items.db");
         loader.loadEntities(entityRegistry, "/data/assercraft/entities/entities.db");
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+        this.blockInteraction = new BlockInteractionSystem(blockRegistry);
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
         this.blockInteraction = new BlockInteractionSystem(blockRegistry);
 =======
@@ -124,6 +149,7 @@ public final class AsserCraftGame {
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
         this.blockInteraction = new BlockInteractionSystem(blockRegistry);
 =======
+ >>>>>>> main
  >>>>>>> main
  >>>>>>> main
  >>>>>>> main
@@ -132,20 +158,29 @@ public final class AsserCraftGame {
         crafting.addRecipe(new Recipe("crafting_table", 2, 2,
                 List.of("oak_planks", "oak_planks", "oak_planks", "oak_planks"),
                 "crafting_table", 1));
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
+ >>>>>>> main
         crafting.addRecipe(new Recipe("furnace", 3, 3,
                 List.of(
                         "stone", "stone", "stone",
                         "stone", "air", "stone",
                         "stone", "stone", "stone"),
                 "furnace", 1));
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
 =======
+=======
+ >>>>>>> main
  >>>>>>> main
 
         System.out.println(mainMenu.render());
         System.out.println("Loaded blocks: " + blockRegistry.size());
         System.out.println("Loaded items: " + itemRegistry.size());
         System.out.println("Loaded entities: " + entityRegistry.size());
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+        System.out.println("Difficulty: " + difficulty);
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
         System.out.println("Difficulty: " + difficulty);
 =======
@@ -155,10 +190,14 @@ public final class AsserCraftGame {
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
  >>>>>>> main
  >>>>>>> main
+ >>>>>>> main
 
         world.streamAround(0, 0, 2);
         player.inventory().addItem("oak_log", 8);
         player.inventory().addItem("oak_planks", 4);
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+        player.inventory().addItem("stone", 8);
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
         player.inventory().addItem("stone", 8);
 =======
@@ -166,6 +205,7 @@ public final class AsserCraftGame {
 =======
 =======
         player.inventory().addItem("oak_log", 8);
+ >>>>>>> main
  >>>>>>> main
  >>>>>>> main
  >>>>>>> main
@@ -178,9 +218,12 @@ public final class AsserCraftGame {
     private void tick() {
         tickCount++;
         world.streamAround(player.chunkX(), player.chunkZ(), 2);
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
 =======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-6yr25b
+ >>>>>>> main
  >>>>>>> main
         physics.applyPlayerPhysics(player, world);
 
@@ -189,12 +232,18 @@ public final class AsserCraftGame {
         int skylight = lightEngine.skylightAt(world, (int) Math.floor(player.x()), playerY, (int) Math.floor(player.z()), isNight);
 
         if (difficulty != Difficulty.PEACEFUL && random.nextDouble() < difficulty.hostileSpawnMultiplier()) {
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+            entities.addAll(spawner.spawnTick(isNight, skylight, true, dimensions.current(), this::createEntity));
+=======
             entities.addAll(spawner.spawnTick(isNight, skylight, true, this::createEntity));
+ >>>>>>> main
         }
         entities.forEach(e -> e.tick(random.nextDouble() * 30.0));
 
         int attacks = combat.applyHostileAttacks(player, entities, difficulty);
         int dropsFromDeaths = combat.collectDeathDrops(entities, itemEntities::add);
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
 =======
 =======
@@ -212,31 +261,41 @@ public final class AsserCraftGame {
         entities.forEach(e -> e.tick(random.nextDouble() * 30.0));
  >>>>>>> main
  >>>>>>> main
+ >>>>>>> main
         entities.removeIf(e -> !e.isAlive());
 
         if (tickCount % 40 == 0) {
             player.move(1, 0, 0);
         }
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
 =======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-6yr25b
+ >>>>>>> main
  >>>>>>> main
         if (tickCount == 20) {
             boolean crafted = crafting.craft(player.inventory(), List.of("oak_log"), 1, 1);
             System.out.println("Crafted planks: " + crafted + " (planks=" + player.inventory().countItem("oak_planks") + ")");
         }
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
 =======
 =======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
  >>>>>>> main
  >>>>>>> main
+ >>>>>>> main
         if (tickCount == 30) {
             boolean placed = blockInteraction.placeBlock(world, player.inventory(), 0, playerY, 1, "oak_planks");
             System.out.println("Placed oak_planks: " + placed);
         }
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
+ >>>>>>> main
         if (tickCount == 35) {
             boolean craftedFurnace = crafting.craft(player.inventory(), List.of(
                     "stone", "stone", "stone",
@@ -244,18 +303,24 @@ public final class AsserCraftGame {
                     "stone", "stone", "stone"), 3, 3);
             System.out.println("Crafted furnace(3x3): " + craftedFurnace + " (furnace=" + player.inventory().countItem("furnace") + ")");
         }
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
 =======
+=======
+ >>>>>>> main
  >>>>>>> main
         if (tickCount == 50) {
             blockInteraction.breakBlock(world, 0, playerY - 1, 0, 2.0f)
                     .ifPresent(result -> result.drops().forEach(drop -> spawnItem(drop, 1, 0.5, playerY, 0.5)));
         }
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
 =======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-6yr25b
 =======
 =======
+ >>>>>>> main
  >>>>>>> main
  >>>>>>> main
  >>>>>>> main
@@ -271,7 +336,10 @@ public final class AsserCraftGame {
         }
         if (tickCount == 140) {
             dimensions.travelToNether();
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
+ >>>>>>> main
             world.setDimension(dimensions.current());
         }
         if (tickCount == 180) {
@@ -283,6 +351,8 @@ public final class AsserCraftGame {
         int fluidMoves = fluidSimulator.tick(world, player.chunkX() * 16, player.chunkZ() * 16, 3);
         int pickups = tickItemEntities();
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
 =======
         }
         if (tickCount == 180) {
@@ -303,19 +373,25 @@ public final class AsserCraftGame {
  >>>>>>> main
  >>>>>>> main
  >>>>>>> main
+ >>>>>>> main
         if (tickCount % 20 == 0) {
             System.out.println("Tick=" + tickCount
                     + " chunks=" + world.loadedChunkCount()
                     + " entities=" + entities.size()
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
 =======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-6yr25b
+ >>>>>>> main
  >>>>>>> main
                     + " drops=" + itemEntities.size()
                     + " attacks=" + attacks
                     + " deathDrops=" + dropsFromDeaths
                     + " dim=" + dimensions.current());
             System.out.println(hud.render(player, pickups, skylight, fluidMoves));
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
 =======
 =======
@@ -326,6 +402,7 @@ public final class AsserCraftGame {
 =======
                     + " dim=" + dimensions.current());
             System.out.println(hud.render(player));
+ >>>>>>> main
  >>>>>>> main
  >>>>>>> main
  >>>>>>> main
@@ -355,7 +432,11 @@ public final class AsserCraftGame {
     }
 
     private Optional<EntityInstance> createEntity(String id) {
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+        return entityRegistry.get(id).map(d -> new EntityInstance(d.id(), d.type(), d.health(), d.drops()));
+=======
         return entityRegistry.get(id).map(d -> new EntityInstance(d.id(), d.type(), d.health()));
+ >>>>>>> main
     }
 
     private void spawnEnderDragon() {
