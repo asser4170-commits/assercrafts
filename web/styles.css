@@ -1,0 +1,9 @@
+:root { color-scheme: dark; }
+body { margin: 0; font-family: Arial, sans-serif; background: #141414; color: #eee; }
+#ui { position: fixed; top: 8px; left: 8px; z-index: 10; background: rgba(0,0,0,.55); padding: 10px 12px; border-radius: 8px; }
+#ui h1 { margin: 0 0 6px; font-size: 18px; }
+#ui p { margin: 4px 0; font-size: 13px; }
+#hotbar { display: flex; gap: 6px; margin-top: 8px; }
+.slot { width: 72px; border: 1px solid #777; border-radius: 6px; padding: 4px; font-size: 11px; text-align: center; background: #222; }
+.slot.active { border-color: #ffd166; box-shadow: 0 0 0 1px #ffd166 inset; }
+#game { display: block; margin: 0 auto; background: #202020; image-rendering: pixelated; }
