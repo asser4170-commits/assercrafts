@@ -1,7 +1,10 @@
 package com.assercraft.crafting;
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-6yr25b
 import com.assercraft.player.Inventory;
 
+=======
+ >>>>>>> main
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +22,7 @@ public final class CraftingSystem {
                 .filter(r -> r.pattern().equals(grid))
                 .findFirst();
     }
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-6yr25b
 
     public boolean craft(Inventory inventory, List<String> grid, int width, int height) {
         Optional<Recipe> match = match(grid, width, height);
@@ -36,4 +40,6 @@ public final class CraftingSystem {
         }
         return inventory.addItem(recipe.result(), recipe.resultCount());
     }
+=======
+ >>>>>>> main
 }
