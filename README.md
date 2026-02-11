@@ -12,19 +12,21 @@ AsserCraft is a Java voxel sandbox prototype targeting Minecraft Java 1.0-inspir
 - Entity AI FSM (idle/wander/chase/attack) and spawn rules
 - Dimension flow (Overworld/Nether/End) with Ender Dragon spawn
 - Simple text UI abstractions (main menu, HUD, inventory)
- <<<<<<< codex/implement-core-systems-for-assercraft-1.0-6yr25b
 - Block placement/breaking API with hardness/drop integration
 - Item-drop entities with pickup physics
 - Basic fluid spread simulation and skylight estimation
 - Difficulty-aware hostile spawning and combat damage
 - Simple physics pass for player-ground collision stabilization
 - Executable crafting workflow via inventory + recipe matching
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
+=======
 =======
  <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
 - Block placement/breaking API with hardness/drop integration
 - Item-drop entities with pickup physics
 - Basic fluid spread simulation and skylight estimation
 =======
+ >>>>>>> main
  >>>>>>> main
  >>>>>>> main
 
@@ -41,3 +43,17 @@ mvn -q exec:java -Dexec.mainClass=com.assercraft.engine.Game
 javac --release 17 -d out $(find src/main/java -name '*.java')
 java -cp out:src/main/resources com.assercraft.engine.Game
 ```
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
+
+
+## Web prototype (playable in browser)
+
+```bash
+cd web
+python3 -m http.server 8080
+# open http://localhost:8080
+```
+
+Features: movement (WASD), break/place blocks with mouse, hotbar (1-9), day/night cycle, and dimension toggle (F).
+=======
+ >>>>>>> main
