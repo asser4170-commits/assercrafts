@@ -43,3 +43,19 @@ python3 -m http.server 8080
 ```
 
 Features: movement (WASD), break/place blocks with mouse, hotbar (1-9), day/night cycle, hostile mobs/combat, and dimension toggle (F).
+
+
+## AsserCraft Classic 1.0 (LWJGL) — Phase 1 status
+
+Implemented foundation:
+- GLFW window creation (OpenGL 3.3 Core)
+- Mouse capture / cursor lock
+- 20 TPS fixed update loop + uncapped render loop
+- FPS counter in window title
+- Basic Vec3 / Mat4 math classes
+- Basic shader system and placeholder shader files
+
+Entry point:
+```bash
+mvn -q exec:java -Dexec.mainClass=com.assercraft.classic.engine.ClassicMain
+```
