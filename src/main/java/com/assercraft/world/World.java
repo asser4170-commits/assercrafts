@@ -28,6 +28,7 @@ public final class World {
             }
         }
     }
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
 
     public BlockState getBlock(int x, int y, int z) {
         if (y < 0 || y >= Chunk.HEIGHT) {
@@ -63,4 +64,7 @@ public final class World {
     private static int toLocal(int worldCoord) {
         return Math.floorMod(worldCoord, Chunk.SIZE);
     }
+======= 
+  
+ >>>>>>> main
 }
