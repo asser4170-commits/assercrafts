@@ -6,17 +6,26 @@ import com.assercraft.game.Difficulty;
 import com.assercraft.player.Player;
 import org.junit.jupiter.api.Test;
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+=======
+import java.util.List;
+
+ >>>>>>> main
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CombatSystemTest {
     @Test
     void hostileAttackDamagesPlayer() {
         Player player = new Player();
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
         EntityInstance zombie = new EntityInstance("zombie", "hostile", 20, List.of("rotten_flesh"));
+=======
+        EntityInstance zombie = new EntityInstance("zombie", "hostile", 20);
+ >>>>>>> main
         zombie.tick(1.0);
 
         CombatSystem combat = new CombatSystem();
@@ -25,6 +34,7 @@ class CombatSystemTest {
         assertTrue(attacks > 0);
         assertTrue(player.health() < 20);
     }
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
 
     @Test
     void deadEntityUsesItsOwnDropTable() {
@@ -39,4 +49,6 @@ class CombatSystemTest {
         assertTrue(drops.contains("bone"));
         assertTrue(drops.contains("arrow"));
     }
+=======
+ >>>>>>> main
 }

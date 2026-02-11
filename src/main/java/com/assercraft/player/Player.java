@@ -25,6 +25,16 @@ public final class Player {
         return health;
     }
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
+=======
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-6yr25b
+=======
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
+ >>>>>>> main
+ >>>>>>> main
+ >>>>>>> main
     public double x() {
         return x;
     }
@@ -37,6 +47,17 @@ public final class Player {
         return z;
     }
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
+=======
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-6yr25b
+=======
+=======
+ >>>>>>> main
+ >>>>>>> main
+ >>>>>>> main
+ >>>>>>> main
     public int chunkX() {
         return (int) Math.floor(x / 16.0);
     }

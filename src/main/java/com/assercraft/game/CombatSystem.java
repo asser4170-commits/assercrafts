@@ -30,12 +30,17 @@ public final class CombatSystem {
         int dropped = 0;
         for (EntityInstance entity : entities) {
             if (!entity.isAlive()) {
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
                 for (String drop : entity.drops()) {
                     if (!drop.isBlank() && !"none".equals(drop)) {
                         dropConsumer.accept(new ItemEntity(drop, 1, 0.5, 2.0, 0.5));
                         dropped++;
                     }
                 }
+=======
+                dropConsumer.accept(new ItemEntity("rotten_flesh", 1, 0.5, 2.0, 0.5));
+                dropped++;
+ >>>>>>> main
             }
         }
         return dropped;

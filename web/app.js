@@ -9,7 +9,10 @@ const H = 26;
 const world = [];
 let tick = 0;
 let dimension = 'overworld';
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
 let gameOver = false;
+=======
+ >>>>>>> main
 
 const blocks = {
   air: { c: 'rgba(0,0,0,0)' },
@@ -25,8 +28,11 @@ const blocks = {
   torch: { c: '#f5c64b' }
 };
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
 const mobs = [];
 
+=======
+ >>>>>>> main
 const player = {
   x: Math.floor(W / 2),
   y: Math.floor(H / 2),
@@ -63,7 +69,10 @@ function generateWorld(dim) {
     }
   }
   world[player.y][player.x] = 'air';
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
   mobs.length = 0;
+=======
+ >>>>>>> main
 }
 
 generateWorld(dimension);
@@ -79,10 +88,13 @@ window.addEventListener('keydown', (e) => {
 });
 window.addEventListener('keyup', (e) => keys.delete(e.key.toLowerCase()));
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
 function getMobAt(x, y) {
   return mobs.find(m => m.x === x && m.y === y);
 }
 
+=======
+ >>>>>>> main
 canvas.addEventListener('contextmenu', (e) => e.preventDefault());
 canvas.addEventListener('mousedown', (e) => {
   const rect = canvas.getBoundingClientRect();
@@ -91,6 +103,7 @@ canvas.addEventListener('mousedown', (e) => {
   if (tx < 0 || ty < 0 || tx >= W || ty >= H) return;
   if (Math.abs(tx - player.x) + Math.abs(ty - player.y) > 1) return;
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
   const mob = getMobAt(tx, ty);
   if (mob && e.button === 0) {
     mob.hp -= 6;
@@ -102,6 +115,8 @@ canvas.addEventListener('mousedown', (e) => {
     return;
   }
 
+=======
+ >>>>>>> main
   if (e.button === 0) {
     const b = world[ty][tx];
     if (b !== 'air' && b !== 'obsidian') {
@@ -112,7 +127,10 @@ canvas.addEventListener('mousedown', (e) => {
   }
   if (e.button === 2) {
     if (world[ty][tx] !== 'air') return;
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
     if (getMobAt(tx, ty)) return;
+=======
+ >>>>>>> main
     const slot = player.hotbar[player.hotbarIndex];
     if (!slot || slot.count <= 0) return;
     world[ty][tx] = slot.id;
@@ -120,6 +138,7 @@ canvas.addEventListener('mousedown', (e) => {
   }
 });
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
 function spawnMob() {
   if (mobs.length > 12) return;
   const day = ((Math.floor(tick / 120) % 2) === 0);
@@ -157,6 +176,9 @@ function updateMobs() {
 
 function step() {
   if (gameOver) return;
+=======
+function step() {
+ >>>>>>> main
   tick++;
   let nx = player.x;
   let ny = player.y;
@@ -164,6 +186,7 @@ function step() {
   if (keys.has('s')) ny++;
   if (keys.has('a')) nx--;
   if (keys.has('d')) nx++;
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
   if (nx >= 1 && ny >= 1 && nx < W - 1 && ny < H - 1 && world[ny][nx] === 'air' && !getMobAt(nx, ny)) {
     player.x = nx; player.y = ny;
   }
@@ -183,6 +206,26 @@ function step() {
   if (tick % 15 === 0) spawnMob();
   if (tick % 8 === 0) updateMobs();
   if (player.hp <= 0) gameOver = true;
+=======
+  if (nx >= 1 && ny >= 1 && nx < W - 1 && ny < H - 1 && world[ny][nx] === 'air') {
+    player.x = nx; player.y = ny;
+  }
+
+  if (tick % 30 === 0) {
+    // simple fluid spread in overworld
+    if (dimension === 'overworld') {
+      for (let y = H - 2; y >= 1; y--) {
+        for (let x = 1; x < W - 1; x++) {
+          if (world[y][x] === 'water') {
+            if (world[y + 1][x] === 'air') world[y + 1][x] = 'water';
+            else if (world[y][x + 1] === 'air') world[y][x + 1] = 'water';
+            else if (world[y][x - 1] === 'air') world[y][x - 1] = 'water';
+          }
+        }
+      }
+    }
+  }
+ >>>>>>> main
 }
 
 function draw() {
@@ -199,6 +242,7 @@ function draw() {
     }
   }
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
   for (const m of mobs) {
     ctx.fillStyle = m.type === 'enderman' ? '#6a4c93' : (m.type === 'ghast' ? '#f1f1f1' : '#d94f4f');
     ctx.fillRect(m.x * TILE + 3, m.y * TILE + 3, TILE - 6, TILE - 6);
@@ -216,6 +260,12 @@ function draw() {
   }
 
   stats.textContent = `Dim: ${dimension} | HP: ${player.hp} | Tick: ${tick} | Mobs: ${mobs.length} | Cycle: ${day ? 'day' : 'night'}`;
+=======
+  ctx.fillStyle = '#ffd166';
+  ctx.fillRect(player.x * TILE + 4, player.y * TILE + 4, TILE - 8, TILE - 8);
+
+  stats.textContent = `Dim: ${dimension} | HP: ${player.hp} | Tick: ${tick} | Cycle: ${day ? 'day' : 'night'}`;
+ >>>>>>> main
   hotbarEl.innerHTML = '';
   player.hotbar.forEach((slot, i) => {
     const div = document.createElement('div');

@@ -2,6 +2,7 @@ package com.assercraft.entity;
 
 import com.assercraft.entity.ai.AiState;
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
 import java.util.List;
 
 public final class EntityInstance {
@@ -16,6 +17,18 @@ public final class EntityInstance {
         this.type = type;
         this.health = health;
         this.drops = List.copyOf(drops);
+=======
+public final class EntityInstance {
+    private final String id;
+    private final String type;
+    private int health;
+    private AiState state = AiState.IDLE;
+
+    public EntityInstance(String id, String type, int health) {
+        this.id = id;
+        this.type = type;
+        this.health = health;
+ >>>>>>> main
     }
 
     public void tick(double distanceToPlayer) {
@@ -34,7 +47,10 @@ public final class EntityInstance {
     public String type() { return type; }
     public int health() { return health; }
     public AiState state() { return state; }
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
     public List<String> drops() { return drops; }
+=======
+ >>>>>>> main
 
     public void damage(int amount) {
         health = Math.max(0, health - amount);

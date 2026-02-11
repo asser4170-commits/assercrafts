@@ -31,6 +31,16 @@ public final class Inventory {
         return false;
     }
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
+=======
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-6yr25b
+=======
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
+ >>>>>>> main
+ >>>>>>> main
+ >>>>>>> main
     public boolean hasItem(String itemId, int amount) {
         return slots.stream()
                 .filter(s -> s != ItemStack.EMPTY)
@@ -41,7 +51,19 @@ public final class Inventory {
 
     public boolean removeItem(String itemId, int amount) {
         int remaining = amount;
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
         for (int i = 0; i < slots.size() && remaining > 0; i++) {
+=======
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
+        for (int i = 0; i < slots.size() && remaining > 0; i++) {
+=======
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-6yr25b
+        for (int i = 0; i < slots.size() && remaining > 0; i++) {
+=======
+      for (int i = 0; i < slots.size() && remaining > 0; i++) {
+ >>>>>>> main
+ >>>>>>> main
+ >>>>>>> main
             ItemStack stack = slots.get(i);
             if (stack == ItemStack.EMPTY || !stack.itemId().equals(itemId)) {
                 continue;
@@ -56,6 +78,13 @@ public final class Inventory {
         return remaining == 0;
     }
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
+=======
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-6yr25b
+ >>>>>>> main
+ >>>>>>> main
 
     public int countItem(String itemId) {
         return slots.stream()
@@ -65,6 +94,16 @@ public final class Inventory {
                 .sum();
     }
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
+=======
+=======
+=======
+ >>>>>>> main
+ >>>>>>> main
+ >>>>>>> main
+ >>>>>>> main
     public List<ItemStack> hotbar() {
         return slots.subList(0, HOTBAR_COUNT);
     }

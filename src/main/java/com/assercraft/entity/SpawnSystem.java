@@ -1,7 +1,10 @@
 package com.assercraft.entity;
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
 import com.assercraft.dimension.DimensionType;
 
+=======
+ >>>>>>> main
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -9,6 +12,7 @@ import java.util.Random;
 public final class SpawnSystem {
     private final Random random = new Random(99L);
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
     public List<EntityInstance> spawnTick(
             boolean isNight,
             int lightLevel,
@@ -42,6 +46,24 @@ public final class SpawnSystem {
         if (random.nextDouble() < 0.4) {
             String id = hostiles.get(random.nextInt(hostiles.size()));
             defsCreate(id, defs, out);
+=======
+    public List<EntityInstance> spawnTick(boolean isNight, int lightLevel, boolean onGrass, RegistryAccess definitions) {
+        List<EntityInstance> spawned = new ArrayList<>();
+        if (isNight || lightLevel < 7) {
+            maybeSpawnHostile(spawned, definitions);
+        }
+        if (!isNight && onGrass) {
+            maybeSpawnPassive(spawned, definitions);
+        }
+        return spawned;
+    }
+
+    private void maybeSpawnHostile(List<EntityInstance> out, RegistryAccess defs) {
+        List<String> hostiles = List.of("zombie", "skeleton", "spider", "creeper", "slime", "ghast", "enderman");
+        if (random.nextDouble() < 0.4) {
+            String id = hostiles.get(random.nextInt(hostiles.size()));
+            defs.create(id).ifPresent(out::add);
+ >>>>>>> main
         }
     }
 
@@ -49,6 +71,7 @@ public final class SpawnSystem {
         List<String> passives = List.of("cow", "pig", "sheep", "chicken");
         if (random.nextDouble() < 0.3) {
             String id = passives.get(random.nextInt(passives.size()));
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
             defsCreate(id, defs, out);
         }
     }
@@ -57,6 +80,12 @@ public final class SpawnSystem {
         defs.create(id).ifPresent(out::add);
     }
 
+=======
+            defs.create(id).ifPresent(out::add);
+        }
+    }
+
+ >>>>>>> main
     public interface RegistryAccess {
         java.util.Optional<EntityInstance> create(String id);
     }

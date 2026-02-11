@@ -18,6 +18,20 @@ AsserCraft is a Java voxel sandbox prototype targeting Minecraft Java 1.0-inspir
 - Difficulty-aware hostile spawning and combat damage
 - Simple physics pass for player-ground collision stabilization
 - Executable crafting workflow via inventory + recipe matching
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
+=======
+=======
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
+- Block placement/breaking API with hardness/drop integration
+- Item-drop entities with pickup physics
+- Basic fluid spread simulation and skylight estimation
+=======
+ >>>>>>> main
+ >>>>>>> main
+ >>>>>>> main
+ >>>>>>> main
 
 ## Run (Maven)
 
@@ -32,6 +46,10 @@ mvn -q exec:java -Dexec.mainClass=com.assercraft.engine.Game
 javac --release 17 -d out $(find src/main/java -name '*.java')
 java -cp out:src/main/resources com.assercraft.engine.Game
 ```
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
+=======
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
+ >>>>>>> main
 
 
 ## Web prototype (playable in browser)
@@ -42,6 +60,7 @@ python3 -m http.server 8080
 # open http://localhost:8080
 ```
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
 Features: movement (WASD), break/place blocks with mouse, hotbar (1-9), day/night cycle, hostile mobs/combat, and dimension toggle (F).
 
 
@@ -59,3 +78,8 @@ Entry point:
 ```bash
 mvn -q exec:java -Dexec.mainClass=com.assercraft.classic.engine.ClassicMain
 ```
+=======
+Features: movement (WASD), break/place blocks with mouse, hotbar (1-9), day/night cycle, and dimension toggle (F).
+=======
+ >>>>>>> main
+ >>>>>>> main

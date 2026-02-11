@@ -13,6 +13,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.10.2</junit.version>
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
         <lwjgl.version>3.3.4</lwjgl.version>
     </properties>
 
@@ -28,6 +29,10 @@
         </dependencies>
     </dependencyManagement>
 
+=======
+    </properties>
+
+ >>>>>>> main
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -35,6 +40,7 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-rhft67
 
         <dependency>
             <groupId>org.lwjgl</groupId>
@@ -67,6 +73,8 @@
             <classifier>natives-linux</classifier>
             <scope>runtime</scope>
         </dependency>
+=======
+ >>>>>>> main
     </dependencies>
 
     <build>
