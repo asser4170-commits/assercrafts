@@ -1,6 +1,9 @@
 package com.assercraft.world.gen;
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
 import com.assercraft.dimension.DimensionType;
+=======
+ >>>>>>> main
 import com.assercraft.world.BlockState;
 import com.assercraft.world.Chunk;
 import com.assercraft.world.ChunkPos;
@@ -14,6 +17,7 @@ public final class WorldGenerator {
         this.seed = seed;
     }
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
     public Chunk generate(ChunkPos pos, DimensionType dimension) {
         return switch (dimension) {
             case OVERWORLD -> generateOverworld(pos);
@@ -23,6 +27,9 @@ public final class WorldGenerator {
     }
 
     private Chunk generateOverworld(ChunkPos pos) {
+=======
+    public Chunk generate(ChunkPos pos) {
+ >>>>>>> main
         Chunk chunk = new Chunk();
         Random random = new Random(seed ^ (pos.x() * 341873128712L) ^ (pos.z() * 132897987541L));
         for (int x = 0; x < Chunk.SIZE; x++) {
@@ -45,6 +52,7 @@ public final class WorldGenerator {
         }
         return chunk;
     }
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-iqjpk1
 
     private Chunk generateNether(ChunkPos pos) {
         Chunk chunk = new Chunk();
@@ -88,4 +96,6 @@ public final class WorldGenerator {
         }
         return chunk;
     }
+=======
+ >>>>>>> main
 }
