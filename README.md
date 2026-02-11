@@ -12,6 +12,12 @@ AsserCraft is a Java voxel sandbox prototype targeting Minecraft Java 1.0-inspir
 - Entity AI FSM (idle/wander/chase/attack) and spawn rules
 - Dimension flow (Overworld/Nether/End) with Ender Dragon spawn
 - Simple text UI abstractions (main menu, HUD, inventory)
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
+- Block placement/breaking API with hardness/drop integration
+- Item-drop entities with pickup physics
+- Basic fluid spread simulation and skylight estimation
+=======
+ >>>>>>> main
 
 ## Run (Maven)
 

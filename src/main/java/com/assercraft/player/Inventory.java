@@ -31,6 +31,34 @@ public final class Inventory {
         return false;
     }
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
+    public boolean hasItem(String itemId, int amount) {
+        return slots.stream()
+                .filter(s -> s != ItemStack.EMPTY)
+                .filter(s -> s.itemId().equals(itemId))
+                .mapToInt(ItemStack::count)
+                .sum() >= amount;
+    }
+
+    public boolean removeItem(String itemId, int amount) {
+        int remaining = amount;
+      for (int i = 0; i < slots.size() && remaining > 0; i++) {
+            ItemStack stack = slots.get(i);
+            if (stack == ItemStack.EMPTY || !stack.itemId().equals(itemId)) {
+                continue;
+            }
+            int take = Math.min(remaining, stack.count());
+            stack.remove(take);
+            remaining -= take;
+            if (stack.isEmpty()) {
+                slots.set(i, ItemStack.EMPTY);
+            }
+        }
+        return remaining == 0;
+    }
+
+=======
+ >>>>>>> main
     public List<ItemStack> hotbar() {
         return slots.subList(0, HOTBAR_COUNT);
     }

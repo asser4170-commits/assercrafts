@@ -11,6 +11,10 @@ import com.assercraft.dimension.DimensionManager;
 import com.assercraft.engine.TickLoop;
 import com.assercraft.entity.EntityDefinition;
 import com.assercraft.entity.EntityInstance;
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
+import com.assercraft.entity.ItemEntity;
+=======
+ >>>>>>> main
 import com.assercraft.entity.SpawnSystem;
 import com.assercraft.item.ItemDefinition;
 import com.assercraft.player.Player;
@@ -18,6 +22,13 @@ import com.assercraft.registry.Registry;
 import com.assercraft.ui.Hud;
 import com.assercraft.ui.InventoryScreen;
 import com.assercraft.ui.MainMenu;
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
+import com.assercraft.world.BlockInteractionSystem;
+import com.assercraft.world.BlockState;
+import com.assercraft.world.FluidSimulator;
+import com.assercraft.world.LightEngine;
+=======
+ >>>>>>> main
 import com.assercraft.world.World;
 
 import java.util.ArrayList;
@@ -44,6 +55,14 @@ public final class AsserCraftGame {
     private final Hud hud = new Hud();
     private final InventoryScreen inventoryScreen = new InventoryScreen();
     private final List<EntityInstance> entities = new ArrayList<>();
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
+    private final List<ItemEntity> itemEntities = new ArrayList<>();
+    private final LightEngine lightEngine = new LightEngine();
+    private final FluidSimulator fluidSimulator = new FluidSimulator();
+    private BlockInteractionSystem blockInteraction;
+
+=======
+ >>>>>>> main
     private final Random random = new Random(42L);
     private long tickCount;
 
@@ -52,6 +71,10 @@ public final class AsserCraftGame {
         loader.loadBlocks(blockRegistry, "/data/assercraft/blocks/blocks.db");
         loader.loadItems(itemRegistry, "/data/assercraft/items/items.db");
         loader.loadEntities(entityRegistry, "/data/assercraft/entities/entities.db");
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
+        this.blockInteraction = new BlockInteractionSystem(blockRegistry);
+=======
+ >>>>>>> main
 
         crafting.addRecipe(new Recipe("planks", 1, 1, List.of("oak_log"), "oak_planks", 4));
         crafting.addRecipe(new Recipe("crafting_table", 2, 2,
@@ -62,7 +85,14 @@ public final class AsserCraftGame {
         System.out.println("Loaded blocks: " + blockRegistry.size());
         System.out.println("Loaded items: " + itemRegistry.size());
         System.out.println("Loaded entities: " + entityRegistry.size());
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
+
+        world.streamAround(0, 0, 2);
         player.inventory().addItem("oak_log", 8);
+        player.inventory().addItem("oak_planks", 4);
+=======
+        player.inventory().addItem("oak_log", 8);
+ >>>>>>> main
     }
 
     public void runForTicks(int ticks) {
@@ -74,8 +104,15 @@ public final class AsserCraftGame {
         world.streamAround(player.chunkX(), player.chunkZ(), 2);
 
         boolean isNight = (tickCount / 24000L) % 2 == 1;
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
+        int playerY = world.findTopSolidY((int) Math.floor(player.x()), (int) Math.floor(player.z())) + 1;
+        int skylight = lightEngine.skylightAt(world, (int) Math.floor(player.x()), playerY, (int) Math.floor(player.z()), isNight);
+
+        entities.addAll(spawner.spawnTick(isNight, skylight, true, this::createEntity));
+=======
         int lightLevel = isNight ? 4 : 15;
         entities.addAll(spawner.spawnTick(isNight, lightLevel, true, this::createEntity));
+ >>>>>>> main
         entities.forEach(e -> e.tick(random.nextDouble() * 30.0));
         entities.removeIf(e -> !e.isAlive());
 
@@ -83,6 +120,18 @@ public final class AsserCraftGame {
             player.move(1, 0, 0);
         }
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
+        if (tickCount == 30) {
+            boolean placed = blockInteraction.placeBlock(world, player.inventory(), 0, playerY, 1, "oak_planks");
+            System.out.println("Placed oak_planks: " + placed);
+        }
+        if (tickCount == 50) {
+            blockInteraction.breakBlock(world, 0, playerY - 1, 0, 2.0f)
+                    .ifPresent(result -> result.drops().forEach(drop -> spawnItem(drop, 1, 0.5, playerY, 0.5)));
+        }
+
+=======
+ >>>>>>> main
         if (tickCount == 60) {
             furnace.smelt("iron_ore").ifPresent(output -> player.inventory().addItem(output, 1));
         }
@@ -101,16 +150,47 @@ public final class AsserCraftGame {
             spawnEnderDragon();
         }
 
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
+        int fluidMoves = fluidSimulator.tick(world, player.chunkX() * 16, player.chunkZ() * 16, 3);
+        int pickups = tickItemEntities();
+
+=======
+ >>>>>>> main
         if (tickCount % 20 == 0) {
             System.out.println("Tick=" + tickCount
                     + " chunks=" + world.loadedChunkCount()
                     + " entities=" + entities.size()
+ <<<<<<< codex/implement-core-systems-for-assercraft-1.0-9heqsw
+                    + " drops=" + itemEntities.size()
+                    + " dim=" + dimensions.current());
+            System.out.println(hud.render(player, pickups, skylight, fluidMoves));
+=======
                     + " dim=" + dimensions.current());
             System.out.println(hud.render(player));
+ >>>>>>> main
         }
         if (tickCount % 100 == 0) {
             System.out.println(inventoryScreen.render(player.inventory()));
         }
+    }
+
+    private int tickItemEntities() {
+        int pickups = 0;
+        for (ItemEntity entity : itemEntities) {
+            entity.tickPhysics();
+            if (entity.canPickup(player.x(), player.y(), player.z())) {
+                if (player.inventory().addItem(entity.itemId(), entity.count())) {
+                    entity.consume();
+                    pickups++;
+                }
+            }
+        }
+        itemEntities.removeIf(e -> !e.isAlive());
+        return pickups;
+    }
+
+    private void spawnItem(String itemId, int count, double x, double y, double z) {
+        itemEntities.add(new ItemEntity(itemId, count, x, y, z));
     }
 
     private Optional<EntityInstance> createEntity(String id) {
